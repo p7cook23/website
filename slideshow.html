@@ -1,0 +1,124 @@
+<html>
+<head>
+<script language = "javascript">
+
+ var counter= 0;
+
+var picList= [ "images/slideshow/slide1.jpg", 
+				 "images/slideshow/slide2.jpg", 
+				 "images/slideshow/slide3.jpg", 
+				 "images/slideshow/slide4.jpg", 
+				 "images/slideshow/slide5.jpg", 
+				"images/slideshow/slide6.jpg"]
+				
+var clipList= ["sounds/slide1bukayosaka.mp3",
+				"sounds/slide2raheemsterling.mp3",
+				"sounds/slide3philfoden.mp3",
+				"sounds/slide4marcusrashford.mp3", 
+				"sounds/slide5jordanpickford.mp3",
+				"sounds/slide6harrykane.mp3"] 
+
+
+
+var timer;
+
+var autoStart = false; 
+
+
+function nextPic()
+{
+
+	document.getElementById("display").src = picList[counter];
+	document.getElementById("player").src = clipList[counter]; 
+	document.getElementById("player").play(); 
+
+	if (counter == picList.length-1)
+	{
+	counter = 0; 
+	}
+	
+	else
+	{
+		counter++; 
+	} 
+}
+
+
+ function run()
+{
+	if (autoStart == false)
+	{
+		autoStart = true 
+		document.getElementById("runButton").value = "Pause"; 
+	} 
+	
+	else 
+	{ 
+		autoStart = false;
+		document.getElementById("runButton").value = "Run Slideshow"; 
+	}
+	
+	
+	autoPlay();
+}
+
+function autoPlay()
+{
+	if ( autoStart == true)
+	{	nextPic();
+	
+		var clipTime = clipList[counter].length-1;
+		timer = setTimeout ("autoPlay()", 5000); 
+	}
+	
+	else 
+	{
+		clearTimeout(timer); 
+	}
+
+}
+
+	// player is like a record player 
+	// player.src is like putting a record on a turn table
+	// .play is like turning on the record player
+	
+
+
+ /*function next() 
+ 
+ {
+ if (counter == picList.length-1)
+	counter=0;
+	
+ else 
+	counter++
+ }
+
+ }*/
+ 
+
+
+</script> 
+
+
+</head>
+<body bgcolor = "#fecdcc">
+<font color= "#dda7b6" face= "Arial"> 
+<center>
+
+<h1> My Slideshow of the English Football Team </h1> 
+Click <a href = "index.html"> here </a> here to return to my home page 
+<br/><br/>
+<input type="button" value= "Next Picture" onclick ="nextPic()"/> 
+
+<input type="button" value= "Run Slideshow" onclick ="run()" id="runButton"/> 
+<br/>
+<img src ="images/slideshow/slide1.jpg"  id="display" />
+<br/> 
+<audio id= "player"> </audio> 
+
+</center>
+
+
+</body>
+</html>
